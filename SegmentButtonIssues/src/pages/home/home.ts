@@ -11,7 +11,7 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
     public editFormGroup: FormGroup;
-    public drinkTypes;
+    public drinkTypes = [];
 
     public drink = {
         drinkType: {
@@ -29,17 +29,17 @@ export class HomePage {
   
     ngOnInit() {
         this.editFormGroup = this.formBuilder.group({
-            "drinkTypeName": new FormControl({ value: this.drink.drinkType.id }, Validators.required),
+            "drinkTypeName": new FormControl({ value: this.drink.drinkType.name }, Validators.required),
         });
+        this.drinkTypes = [{ id: 1, name: 'coffee' }, { id: 2, name: 'tea' }]; //BINDABLE
         this.getDrinkTypesFromDataBase();
     }
 
 
     getDrinkTypesFromDataBase() {
-       // this.drinkTypes = [{ id: 1, name: 'coffee' }, { id: 2, name: 'tea' }, { id: 3, name: 'milk' }]; //HERE, IT WORKS
-
         setTimeout(() => {
-            this.drinkTypes = [{ id: 1, name: 'coffee' }, { id: 2, name: 'tea' }, { id: 3, name: 'milk' }]; //HERE iT DIES
+            this.drinkTypes.push({ id: 3, name: 'milk' }); //UNBINDABLE
+            this.changeDetection.detectChanges();
         }, 100)
         
     }
