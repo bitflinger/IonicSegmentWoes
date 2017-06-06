@@ -10,10 +10,10 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'home.html'
 })
 export class HomePage {
-    private editFormGroup: FormGroup;
-    private drinkTypes;
+    public editFormGroup: FormGroup;
+    public drinkTypes;
 
-    private drink = {
+    public drink = {
         drinkType: {
             id: 2,
             name: 'tea'
@@ -29,7 +29,7 @@ export class HomePage {
   
     ngOnInit() {
         this.editFormGroup = this.formBuilder.group({
-            "drinkTypeName": new FormControl({ value: this.drink.drinkType.name }, Validators.required),
+            "drinkTypeName": new FormControl({ value: this.drink.drinkType.id }, Validators.required),
         });
         this.getDrinkTypesFromDataBase();
     }
@@ -42,6 +42,10 @@ export class HomePage {
             this.drinkTypes = [{ id: 1, name: 'coffee' }, { id: 2, name: 'tea' }, { id: 3, name: 'milk' }]; //HERE iT DIES
         }, 100)
         
+    }
+
+    iclicked(evt) {
+        var i = evt;
     }
 
 }

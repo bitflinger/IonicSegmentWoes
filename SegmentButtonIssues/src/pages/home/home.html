@@ -14,12 +14,12 @@
         <p class="ionic-logo"></p>
     </div>
 
-    <form id="frmEdit" [formGroup]="editFormGroup" *ngIf="editFormGroup && drinkTypes" (ngSubmit)="submit()" novalidate>
+    <form id="frmEdit" [formGroup]="editFormGroup" (ngSubmit)="submit()" novalidate>
         <ion-grid>
             <ion-row>
                 <ion-col>
-                    <ion-segment color="primary" id="drinkTypeName" name="drinkTypeName" formControlName="drinkTypeName" [(ngModel)]="drink.drinkType.name">
-                        <ion-segment-button *ngFor="let drinkType of drinkTypes" value="{{drinkType.name}}">{{drinkType.name}}</ion-segment-button>
+                    <ion-segment color="primary" id="drinkTypeName" name="drinkTypeName" formControlName="drinkTypeName" [(ngModel)]="drink.drinkType.id">
+                        <ion-segment-button (ionSelect)="iclicked($event)" *ngFor="let drinkType of drinkTypes" value="{{drinkType.id}}">{{drinkType.name}}</ion-segment-button>
                     </ion-segment>
                 </ion-col>
             </ion-row>
